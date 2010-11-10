@@ -1,26 +1,26 @@
 window.LPParser = class LPParser
+  terminals: [
+    "atom",
+    "<->",
+    "->",
+    "~",
+    "^",
+    "v",
+    "(",
+    ")"
+  ]
+
+  nonterminals: [
+    "S",
+    "E",
+    "I",
+    "C",
+    "D",
+    "N",
+    "G"
+  ]
+
   constructor: ->
-    @terminals = [
-      "atom",
-      "<->",
-      "->",
-      "~",
-      "^",
-      "v",
-      "(",
-      ")"
-    ]
-
-    @nonterminals = [
-      "S",
-      "E",
-      "I",
-      "C",
-      "D",
-      "N",
-      "G"
-    ]
-
     @rules = [
       ["S", [
         "E",

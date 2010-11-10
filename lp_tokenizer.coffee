@@ -1,31 +1,31 @@
 window.LPTokenizer = class LPTokenizer
+  states: [
+    "start",
+    "atom",
+    "<",
+    "<-",
+    "<->",
+    "-",
+    "->",
+    "~",
+    "^",
+    "v",
+    "(",
+    ")"
+  ]
+
+  accepting_states: [
+    "atom",
+    "<->",
+    "->",
+    "~",
+    "^",
+    "v",
+    "(",
+    ")"
+  ]
+
   constructor: ->
-    @states = [
-      "start",
-      "atom",
-      "<",
-      "<-",
-      "<->",
-      "-",
-      "->",
-      "~",
-      "^",
-      "v",
-      "(",
-      ")"
-    ]
-
-    @accepting_states = [
-      "atom",
-      "<->",
-      "->",
-      "~",
-      "^",
-      "v",
-      "(",
-      ")"
-    ]
-
     @transitions = @init_transitions()
 
   # Initialize the DFA Tokenizer Transitions

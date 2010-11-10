@@ -9,13 +9,13 @@
   window.LPTokenizer = (function() {
     LPTokenizer = (function() {
       function LPTokenizer() {
-        this.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")"];
-        this.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")"];
         this.transitions = this.init_transitions();
         return this;
       }
       return LPTokenizer;
     })();
+    LPTokenizer.prototype.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")"];
+    LPTokenizer.prototype.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")"];
     LPTokenizer.prototype.init_transitions = function() {
       var add_transitions, s, transitions, _i, _len, _ref;
       transitions = {};
