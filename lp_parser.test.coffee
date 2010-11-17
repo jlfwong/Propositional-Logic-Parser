@@ -30,3 +30,28 @@ test 'valid', ->
 
   for trial in trials
     ok(parser.parse(tokenizer.tokenize(trial)),trial)
+
+test 'errors', ->
+  parser = new LPParser
+  tokenizer = new LPTokenizer
+
+  trials = [
+    "",
+    "^",
+    "v",
+    "(",
+    "(((",
+    "((())",
+    ")",
+    ")(",
+    "~",
+    "AA",
+    "->",
+    "<->",
+    "A->->B",
+    "A<-><->B",
+  ]
+
+  for trial in trials
+    assertThrows "ParseError", ->
+      parser.parse(tokenizer.tokenize(trial))

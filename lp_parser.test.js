@@ -23,4 +23,21 @@
     }
     return _results;
   });
+  test('errors', function() {
+    var parser, tokenizer, trials, _fn, _i, _len, _results;
+    parser = new LPParser;
+    tokenizer = new LPTokenizer;
+    trials = ["", "^", "v", "(", "(((", "((())", ")", ")(", "~", "AA", "->", "<->", "A->->B", "A<-><->B"];
+    _fn = function(trial) {
+      return assertThrows("ParseError", function() {
+        return parser.parse(tokenizer.tokenize(trial));
+      });
+    };
+    _results = [];
+    for (_i = 0, _len = trials.length; _i < _len; _i++) {
+      trial = trials[_i];
+      _results.push(_fn(trial));
+    }
+    return _results;
+  });
 }).call(this);

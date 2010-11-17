@@ -1,6 +1,5 @@
 (function() {
   var LPParser;
-  var __hasProp = Object.prototype.hasOwnProperty;
   window.LPParser = (function() {
     LPParser = (function() {
       function LPParser() {
@@ -202,32 +201,8 @@
         rhs: ["atom"]
       }
     ];
-    LPParser.prototype.logParseTree = function(parse_tree_node, indentation) {
-      var i, node, output_str, rule, symbol, _ref, _results;
-      indentation != null ? indentation : indentation = 0;
-      i = indentation;
-      output_str = "";
-      while (i > 0) {
-        output_str += "|";
-        i -= 1;
-      }
-      rule = this.production_rules[parse_tree_node.rule];
-      output_str += "" + rule.lhs + " => " + (rule.rhs.join(' '));
-      console.log(output_str);
-      _results = [];
-      for (symbol in _ref = parse_tree_node.expansions) {
-        if (!__hasProp.call(_ref, symbol)) continue;
-        node = _ref[symbol];
-        if (node.terminal) {
-          continue;
-        }
-        _results.push(this.logParseTree(node, indentation + 1));
-      }
-      return _results;
-    };
     LPParser.prototype.parse = function(tokens) {
       var cur_action, cur_input, cur_state, i, input_stack, output_stack, output_stack_top, parse_node, rhs_symbol, rule, start_parse_node, state_stack, token, _i, _len;
-      console.group("--");
       input_stack = [];
       state_stack = [0];
       output_stack = [];
@@ -253,22 +228,12 @@
         cur_input = input_stack[input_stack.length - 1];
         cur_state = state_stack[state_stack.length - 1];
         cur_action = this.action_table[cur_state][cur_input.symbol];
-        /*
-        console.dir {
-          input: input_stack
-          output: output_stack
-          state: cur_state
-          cur_input: cur_input
-          cur_action: cur_action
-        }
-        */
         if ((cur_action != null ? cur_action.type : void 0) === "shift") {
           state_stack.push(cur_action.state);
           output_stack.push(cur_input);
           input_stack.pop();
         } else if ((cur_action != null ? cur_action.type : void 0) === "reduce") {
           rule = this.production_rules[cur_action.rule];
-          console.log("" + rule.lhs + " => " + (rule.rhs.join(' ')));
           parse_node = {
             symbol: rule.lhs,
             terminal: false,
@@ -281,16 +246,6 @@
             rhs_symbol = rule.rhs[i];
             output_stack_top = output_stack[output_stack.length - 1];
             if (output_stack_top.symbol !== rhs_symbol) {
-              /*
-              console.dir {
-                cur_input: cur_input
-                cur_state: cur_state
-                cur_action: cur_action
-                input_stack: input_stack
-                output_stack: output_stack
-                state_stack: state_stack
-              }
-              */
               throw "StackError: Expecting " + rhs_symbol + ", Got " + output_stack_top.symbol;
             }
             parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1];
@@ -298,14 +253,6 @@
           }
           input_stack.push(parse_node);
         } else {
-          console.dir({
-            cur_input: cur_input,
-            cur_state: cur_state,
-            cur_action: cur_action,
-            input_stack: input_stack,
-            output_stack: output_stack,
-            state_stack: state_stack
-          });
           throw "ParseError";
         }
       }
@@ -323,7 +270,6 @@
         start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1];
         output_stack.pop();
       }
-      console.groupEnd();
       return start_parse_node;
     };
     return LPParser;

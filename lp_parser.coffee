@@ -268,24 +268,7 @@ window.LPParser = class LPParser
       }
     ]
 
-  logParseTree: (parse_tree_node, indentation) ->
-    indentation ?= 0
-    i = indentation
-    output_str = ""
-    while i > 0
-      output_str += "|"
-      i -= 1
-
-    rule = @production_rules[parse_tree_node.rule]
-    output_str += "#{rule.lhs} => #{rule.rhs.join(' ')}"
-    console.log output_str
-    for symbol, node of parse_tree_node.expansions
-      continue if node.terminal
-      this.logParseTree node, (indentation + 1)
-
-
   parse: (tokens) ->
-    console.group "--"
     input_stack = []
     state_stack = [0]
     output_stack = []
@@ -314,23 +297,13 @@ window.LPParser = class LPParser
       cur_state = state_stack[state_stack.length-1]
       cur_action = @action_table[cur_state][cur_input.symbol]
 
-      ###
-      console.dir {
-        input: input_stack
-        output: output_stack
-        state: cur_state
-        cur_input: cur_input
-        cur_action: cur_action
-      }
-      ###
-
       if cur_action?.type == "shift"
         state_stack.push cur_action.state
         output_stack.push cur_input
         input_stack.pop()
       else if cur_action?.type == "reduce"
         rule = @production_rules[cur_action.rule]
-        console.log "#{rule.lhs} => #{rule.rhs.join(' ')}"
+        #console.log "#{rule.lhs} => #{rule.rhs.join(' ')}"
 
         parse_node =
           symbol: rule.lhs
@@ -344,31 +317,12 @@ window.LPParser = class LPParser
           rhs_symbol = rule.rhs[i]
           output_stack_top = output_stack[output_stack.length - 1]
           if output_stack_top.symbol != rhs_symbol
-            ###
-            console.dir {
-              cur_input: cur_input
-              cur_state: cur_state
-              cur_action: cur_action
-              input_stack: input_stack
-              output_stack: output_stack
-              state_stack: state_stack
-            }
-            ###
             throw "StackError: Expecting #{rhs_symbol}, Got #{output_stack_top.symbol}"
-
           parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
           output_stack.pop()
 
         input_stack.push parse_node
       else
-        console.dir {
-          cur_input: cur_input
-          cur_state: cur_state
-          cur_action: cur_action
-          input_stack: input_stack
-          output_stack: output_stack
-          state_stack: state_stack
-        }
         throw "ParseError"
     
     rule = @production_rules[0]
@@ -386,7 +340,5 @@ window.LPParser = class LPParser
       start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
       output_stack.pop()
 
-    #this.logParseTree start_parse_node
-    console.groupEnd()
     return start_parse_node
         
