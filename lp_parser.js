@@ -16,6 +16,7 @@
             rule: x
           };
         };
+        this.lexer = new LPLexer;
         this.action_table = [
           {
             "BOF": shift(1)
@@ -201,8 +202,9 @@
         rhs: ["atom"]
       }
     ];
-    LPParser.prototype.parse = function(tokens) {
-      var cur_action, cur_input, cur_state, i, input_stack, output_stack, output_stack_top, parse_node, rhs_symbol, rule, start_parse_node, state_stack, token, _i, _len;
+    LPParser.prototype.parse = function(input_string) {
+      var cur_action, cur_input, cur_state, i, input_stack, output_stack, output_stack_top, parse_node, rhs_symbol, rule, start_parse_node, state_stack, token, tokens, _i, _len;
+      tokens = this.lexer.tokenize(input_string);
       input_stack = [];
       state_stack = [0];
       output_stack = [];
@@ -237,7 +239,7 @@
           parse_node = {
             symbol: rule.lhs,
             terminal: false,
-            rule: cur_action.rule,
+            rule: rule,
             expansions: {}
           };
           i = rule.rhs.length;
@@ -260,7 +262,7 @@
       start_parse_node = {
         symbol: rule.lhs,
         terminal: false,
-        rule: 0,
+        rule: rule,
         expansions: {}
       };
       i = rule.rhs.length;
@@ -270,6 +272,7 @@
         start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1];
         output_stack.pop();
       }
+      console.log(start_parse_node);
       return start_parse_node;
     };
     return LPParser;

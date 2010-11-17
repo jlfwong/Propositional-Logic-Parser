@@ -1,4 +1,4 @@
-window.LPTokenizer = class LPTokenizer
+window.LPLexer = class LPLexer
   states: [
     "start",
     "atom",
@@ -46,7 +46,7 @@ window.LPTokenizer = class LPTokenizer
     add_transitions "start", "^", "^"
     add_transitions "start", "v", "v"
     add_transitions "start", "(", "("
-    add_transitions "start", ")", "v"
+    add_transitions "start", ")", ")"
 
     add_transitions "start", "<", "<"
     add_transitions "<",     "-", "<-"

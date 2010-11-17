@@ -10,7 +10,6 @@ assertThrows = (error,fcn) ->
 
 test 'valid', ->
   parser = new LPParser
-  tokenizer = new LPTokenizer
 
   trials = [
     "A^(BvC)",
@@ -29,11 +28,10 @@ test 'valid', ->
   ]
 
   for trial in trials
-    ok(parser.parse(tokenizer.tokenize(trial)),trial)
+    ok(parser.parse(trial),trial)
 
 test 'errors', ->
   parser = new LPParser
-  tokenizer = new LPTokenizer
 
   trials = [
     "",
@@ -54,4 +52,4 @@ test 'errors', ->
 
   for trial in trials
     assertThrows "ParseError", ->
-      parser.parse(tokenizer.tokenize(trial))
+      parser.parse(trial)

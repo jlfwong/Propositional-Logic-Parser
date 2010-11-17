@@ -109,6 +109,7 @@ window.LPParser = class LPParser
         rule: x
       }
 
+    @lexer = new LPLexer
     @action_table = [
       { # 0
         "BOF":  shift 1
@@ -268,7 +269,9 @@ window.LPParser = class LPParser
       }
     ]
 
-  parse: (tokens) ->
+  parse: (input_string) ->
+    tokens = @lexer.tokenize input_string
+
     input_stack = []
     state_stack = [0]
     output_stack = []
@@ -308,7 +311,7 @@ window.LPParser = class LPParser
         parse_node =
           symbol: rule.lhs
           terminal: false
-          rule: cur_action.rule
+          rule: rule
           expansions: {}
 
         i = rule.rhs.length
@@ -330,7 +333,7 @@ window.LPParser = class LPParser
     start_parse_node =
       symbol: rule.lhs
       terminal: false
-      rule: 0
+      rule: rule
       expansions: {}
 
     i = rule.rhs.length
@@ -340,5 +343,6 @@ window.LPParser = class LPParser
       start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
       output_stack.pop()
 
+    console.log start_parse_node
     return start_parse_node
         

@@ -1,22 +1,22 @@
 (function() {
-  var LPTokenizer;
+  var LPLexer;
   var __indexOf = Array.prototype.indexOf || function(item) {
     for (var i = 0, l = this.length; i < l; i++) {
       if (this[i] === item) return i;
     }
     return -1;
   };
-  window.LPTokenizer = (function() {
-    LPTokenizer = (function() {
-      function LPTokenizer() {
+  window.LPLexer = (function() {
+    LPLexer = (function() {
+      function LPLexer() {
         this.transitions = this.init_transitions();
         return this;
       }
-      return LPTokenizer;
+      return LPLexer;
     })();
-    LPTokenizer.prototype.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")"];
-    LPTokenizer.prototype.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")"];
-    LPTokenizer.prototype.init_transitions = function() {
+    LPLexer.prototype.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")"];
+    LPLexer.prototype.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")"];
+    LPLexer.prototype.init_transitions = function() {
       var add_transitions, s, transitions, _i, _len, _ref;
       transitions = {};
       _ref = this.states;
@@ -46,7 +46,7 @@
       add_transitions("-", ">", "->");
       return transitions;
     };
-    LPTokenizer.prototype.tokenize = function(input) {
+    LPLexer.prototype.tokenize = function(input) {
       var c, curstate, curtok, tokenQueue, _i, _len;
       tokenQueue = [];
       curtok = "";
@@ -80,6 +80,6 @@
       }
       return tokenQueue;
     };
-    return LPTokenizer;
+    return LPLexer;
   })();
 }).call(this);

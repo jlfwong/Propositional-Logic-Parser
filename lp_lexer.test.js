@@ -1,6 +1,6 @@
 (function() {
   var assertThrows;
-  module('LPTokenizer');
+  module('LPLexer');
   assertThrows = function(error, fcn) {
     var correctError;
     correctError = false;
@@ -12,9 +12,9 @@
     return ok(correctError);
   };
   test('valid', function() {
-    var tokenizer;
-    tokenizer = new LPTokenizer;
-    same(tokenizer.tokenize('A^A'), [
+    var lexer;
+    lexer = new LPLexer;
+    same(lexer.tokenize('A^A'), [
       {
         type: 'atom',
         lexeme: 'A'
@@ -26,7 +26,7 @@
         lexeme: 'A'
       }
     ]);
-    same(tokenizer.tokenize('AvA'), [
+    same(lexer.tokenize('AvA'), [
       {
         type: 'atom',
         lexeme: 'A'
@@ -38,7 +38,7 @@
         lexeme: 'A'
       }
     ]);
-    same(tokenizer.tokenize('A->A'), [
+    same(lexer.tokenize('A->A'), [
       {
         type: 'atom',
         lexeme: 'A'
@@ -50,7 +50,7 @@
         lexeme: 'A'
       }
     ]);
-    same(tokenizer.tokenize('A<->A'), [
+    same(lexer.tokenize('A<->A'), [
       {
         type: 'atom',
         lexeme: 'A'
@@ -62,7 +62,7 @@
         lexeme: 'A'
       }
     ]);
-    same(tokenizer.tokenize('~A'), [
+    same(lexer.tokenize('~A'), [
       {
         type: '~',
         lexeme: '~'
@@ -71,7 +71,7 @@
         lexeme: 'A'
       }
     ]);
-    return same(tokenizer.tokenize('(A)'), [
+    return same(lexer.tokenize('(A)'), [
       {
         type: '(',
         lexeme: '('
@@ -85,25 +85,25 @@
     ]);
   });
   test('errors', function() {
-    var tokenizer;
-    tokenizer = new LPTokenizer;
+    var lexer;
+    lexer = new LPLexer;
     assertThrows('ParseError', function() {
-      return tokenizer.tokenize('<');
+      return lexer.tokenize('<');
     });
     assertThrows('ParseError', function() {
-      return tokenizer.tokenize('<-');
+      return lexer.tokenize('<-');
     });
     assertThrows('ParseError', function() {
-      return tokenizer.tokenize('');
+      return lexer.tokenize('');
     });
     assertThrows('ParseError', function() {
-      return tokenizer.tokenize('-');
+      return lexer.tokenize('-');
     });
     assertThrows('ParseError', function() {
-      return tokenizer.tokenize('x');
+      return lexer.tokenize('x');
     });
     return assertThrows('ParseError', function() {
-      return tokenizer.tokenize('*');
+      return lexer.tokenize('*');
     });
   });
 }).call(this);
