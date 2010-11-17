@@ -15,7 +15,7 @@
     var parser, tokenizer, trial, trials, _i, _len, _results;
     parser = new LPParser;
     tokenizer = new LPTokenizer;
-    trials = ["A^(BvC)", "A->B", "A<->B", "A^B^C", "AvB", "AvBvC", "Av(B^C)vD", "A^B", "A", "((((A))))", "~A", "~~~~~~~~~A"];
+    trials = ["A^(BvC)", "A->B", "A<->B", "A^B^C", "AvB", "AvBvC", "Av(B^C)vD", "A^B", "A", "((((A))))", "~A", "~~~~~~~~~A", "~A<->~B->~C^~Dv~E"];
     _results = [];
     for (_i = 0, _len = trials.length; _i < _len; _i++) {
       trial = trials[_i];

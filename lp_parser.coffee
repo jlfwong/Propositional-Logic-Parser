@@ -167,6 +167,7 @@ window.LPParser = class LPParser
         "G":    shift 20
         "(":    shift 7
         "atom": shift 8
+        "~":    shift 6
       },
       { # 8
         "<->":  reduce 12
@@ -184,6 +185,7 @@ window.LPParser = class LPParser
         "N":    shift 5
         "G":    shift 20
         "atom": shift 8
+        "~":    shift 6
       },
       { # 10
         ")":    reduce 1
@@ -197,6 +199,7 @@ window.LPParser = class LPParser
         "G":    shift 20
         "(":    shift 7
         "atom": shift 8
+        "~":    shift 6
       },
       { # 12
         "<->":  reduce 3
@@ -209,6 +212,7 @@ window.LPParser = class LPParser
         "G":    shift 20
         "(":    shift 7
         "atom": shift 8
+        "~":    shift 6
       },
       { # 14
         "<->":  reduce 7
@@ -243,6 +247,7 @@ window.LPParser = class LPParser
         "G":    shift 20
         "(":    shift 7
         "atom": shift 8
+        "~":    shift 6
       },
       { # 19
         "<->":  reduce 5

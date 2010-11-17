@@ -67,7 +67,8 @@
             "N": shift(5),
             "G": shift(20),
             "(": shift(7),
-            "atom": shift(8)
+            "atom": shift(8),
+            "~": shift(6)
           }, {
             "<->": reduce(12),
             "->": reduce(12),
@@ -82,7 +83,8 @@
             "D": shift(2),
             "N": shift(5),
             "G": shift(20),
-            "atom": shift(8)
+            "atom": shift(8),
+            "~": shift(6)
           }, {
             ")": reduce(1),
             "EOF": reduce(1)
@@ -93,7 +95,8 @@
             "N": shift(5),
             "G": shift(20),
             "(": shift(7),
-            "atom": shift(8)
+            "atom": shift(8),
+            "~": shift(6)
           }, {
             "<->": reduce(3),
             ")": reduce(3),
@@ -103,7 +106,8 @@
             "N": shift(5),
             "G": shift(20),
             "(": shift(7),
-            "atom": shift(8)
+            "atom": shift(8),
+            "~": shift(6)
           }, {
             "<->": reduce(7),
             "->": reduce(7),
@@ -132,7 +136,8 @@
             "N": shift(5),
             "G": shift(20),
             "(": shift(7),
-            "atom": shift(8)
+            "atom": shift(8),
+            "~": shift(6)
           }, {
             "<->": reduce(5),
             "->": reduce(5),
