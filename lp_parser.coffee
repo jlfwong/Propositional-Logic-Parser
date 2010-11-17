@@ -269,6 +269,7 @@ window.LPParser = class LPParser
       }
     ]
 
+  # Takes a string as input and returns the parse tree
   parse: (input_string) ->
     tokens = @lexer.tokenize input_string
 
@@ -306,7 +307,6 @@ window.LPParser = class LPParser
         input_stack.pop()
       else if cur_action?.type == "reduce"
         rule = @production_rules[cur_action.rule]
-        #console.log "#{rule.lhs} => #{rule.rhs.join(' ')}"
 
         parse_node =
           symbol: rule.lhs
@@ -343,6 +343,5 @@ window.LPParser = class LPParser
       start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
       output_stack.pop()
 
-    console.log start_parse_node
     return start_parse_node
         

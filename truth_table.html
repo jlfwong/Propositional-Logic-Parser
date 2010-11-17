@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Truth Tabler</title>
+    <link rel="stylesheet" href="truth_table.css" type="text/css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+    <script src="lp_lexer.js" type="text/javascript"></script>
+    <script src="lp_parser.js" type="text/javascript"></script>
+    <script src="lp_evaluator.js" type="text/javascript"></script>
+    <script src="truth_table.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div id='container'>
+      <input id='formula' type='text' value='~A^B' class='valid' />
+      <div id='instructions_wrapper'>
+        <div id='instructions'>
+          <h3>Instructions</h3>
+          <ul>
+            <li>Type your formula in the box above</li>
+            <li>If the box is green, your formula is valid. If it's red, there's a syntax error</li>
+            <li>Atoms are any single character from A to Z (uppercase only)</li>
+            <li>Operators are: 
+              <ul>
+                <li>~ &nbsp;&nbsp;(negation)</li>
+                <li>^ &nbsp;&nbsp;(and)</li>
+                <li>v &nbsp;&nbsp;(or)</li>
+                <li>-&gt; &nbsp;(implication)</li>
+                <li>&lt;-&gt; (equivalence)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id='display_wrapper'>
+        <div id='display'>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
+

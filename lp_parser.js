@@ -272,7 +272,6 @@
         start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1];
         output_stack.pop();
       }
-      console.log(start_parse_node);
       return start_parse_node;
     };
     return LPParser;

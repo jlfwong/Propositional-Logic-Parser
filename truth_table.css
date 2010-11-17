@@ -1,0 +1,140 @@
+
+/* Reset (http://meyerweb.com/eric/tools/css/reset/) v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: circle;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* ---- Begin Truth Tabler CSS ------ */
+body {
+  font-family: Courier New, Monospace;
+}
+
+#container {
+  width: 700px;
+  margin: 10px auto 0 auto;
+  border: 2px solid #dcc;
+  overflow: hidden;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+input#formula {
+  font-family: Courier New, Monospace;
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  height: 40px;
+  color: #112233;
+  border: none;
+}
+
+input#formula.valid {
+  background-color: #cec;
+}
+
+input#formula.invalid {
+  background-color: #ecc;
+}
+
+#instructions_wrapper, #display_wrapper {
+  height: 360px;
+  float: left;
+}
+
+#instructions_wrapper {
+  width: 30%;
+  background-color: #ddd;
+}
+
+#display_wrapper {
+  width: 70%;
+  background-color: #eee;
+}
+
+#instructions, #display {
+  padding: 20px;
+}
+
+#instructions {
+  font-size: 12px;
+}
+
+#display {
+  height: 360px;
+  overflow: auto;
+}
+
+table#of_truth {
+  margin: auto;
+  border: 1px solid black;
+}
+
+table, table tr, table tr td, table tr th {
+  border: 1px solid black;
+  text-align: center;
+}
+
+table tr td, table tr th {
+  padding: 2px;
+  font-size: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+  margin-left: 15px;
+}
+
+li ul {
+  padding-top: 5px;
+}
