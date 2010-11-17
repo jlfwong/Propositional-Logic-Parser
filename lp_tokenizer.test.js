@@ -62,13 +62,25 @@
         lexeme: 'A'
       }
     ]);
-    return same(tokenizer.tokenize('~A'), [
+    same(tokenizer.tokenize('~A'), [
       {
         type: '~',
         lexeme: '~'
       }, {
         type: 'atom',
         lexeme: 'A'
+      }
+    ]);
+    return same(tokenizer.tokenize('(A)'), [
+      {
+        type: '(',
+        lexeme: '('
+      }, {
+        type: 'atom',
+        lexeme: 'A'
+      }, {
+        type: ')',
+        lexeme: ')'
       }
     ]);
   });

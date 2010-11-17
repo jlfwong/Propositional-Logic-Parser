@@ -88,7 +88,7 @@ window.LPParser = class LPParser
     # 12: G => atom
     {
       lhs: "G",
-      rhs: ["(","S",")"],
+      rhs: ["(","E",")"],
     },
     {
       lhs: "G",
@@ -151,8 +151,10 @@ window.LPParser = class LPParser
         "EOF":  reduce 8
       },
       { # 6
+        "~":    shift 6
         "N":    shift 15
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
       },
       { # 7
@@ -163,6 +165,7 @@ window.LPParser = class LPParser
         "D":    shift 2
         "N":    shift 5
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
       },
       { # 8
@@ -183,8 +186,8 @@ window.LPParser = class LPParser
         "atom": shift 8
       },
       { # 10
-        ")":    reduce 2
-        "EOF":  reduce 2
+        ")":    reduce 1
+        "EOF":  reduce 1
       },
       { # 11
         "I":    shift 12
@@ -192,17 +195,19 @@ window.LPParser = class LPParser
         "D":    shift 2
         "N":    shift 5
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
       },
       { # 12
-        "<->":  reduce 4
-        ")":    reduce 4
-        "EOF":  reduce 4
+        "<->":  reduce 3
+        ")":    reduce 3
+        "EOF":  reduce 3
       },
       { # 13
         "D":    shift 14
         "N":    shift 5
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
       },
       { # 14
@@ -232,10 +237,11 @@ window.LPParser = class LPParser
         "EOF":  reduce 11
       },
       { # 18
-        "C":    shift 18
-        "D":    shift 14
+        "C":    shift 19
+        "D":    shift 2
         "N":    shift 5
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
       },
       { # 19
@@ -257,46 +263,125 @@ window.LPParser = class LPParser
       }
     ]
 
-  getDerivation: (tokens) ->
+  logParseTree: (parse_tree_node, indentation) ->
+    indentation ?= 0
+    i = indentation
+    output_str = ""
+    while i > 0
+      output_str += "|"
+      i -= 1
+
+    rule = @production_rules[parse_tree_node.rule]
+    output_str += "#{rule.lhs} => #{rule.rhs.join(' ')}"
+    console.log output_str
+    for symbol, node of parse_tree_node.expansions
+      continue if node.terminal
+      this.logParseTree node, (indentation + 1)
+
+
+  parse: (tokens) ->
+    console.group "--"
     input_stack = []
     state_stack = [0]
-    derivation = []
+    output_stack = []
 
-    console.log input_stack
-    input_stack.push "EOF"
-    console.log input_stack
+
+    input_stack.unshift {
+      symbol: "BOF"
+      terminal: true
+      literal: "BOF"
+    }
     for token in tokens
-      console.log [token,input_stack]
-      input_stack.push token.type
-      console.log input_stack
-    input_stack.push "BOF"
+      input_stack.unshift {
+        symbol: token.type
+        terminal: true
+        literal: token.lexeme
+      }
+    input_stack.unshift {
+      symbol: "EOF"
+      terminal: true
+      literal: "EOF"
+    }
 
 
     while input_stack.length > 0
       cur_input = input_stack[input_stack.length-1]
       cur_state = state_stack[state_stack.length-1]
-      cur_action = @action_table[cur_state][cur_input]
+      cur_action = @action_table[cur_state][cur_input.symbol]
 
+      ###
       console.dir {
-        input_stack: input_stack
-        state_stack: state_stack
-        derivation: derivation
-        cur_action: cur_action
+        input: input_stack
+        output: output_stack
+        state: cur_state
         cur_input: cur_input
-        cur_state: cur_state
+        cur_action: cur_action
       }
+      ###
 
       if cur_action?.type == "shift"
         state_stack.push cur_action.state
+        output_stack.push cur_input
         input_stack.pop()
       else if cur_action?.type == "reduce"
         rule = @production_rules[cur_action.rule]
-        derivation.push rule
-        for i in rule.rhs
-          state_stack.pop()
-        input_stack.push rule.lhs
-      else
-        throw "ParseError"
+        console.log "#{rule.lhs} => #{rule.rhs.join(' ')}"
 
-    return derivation
+        parse_node =
+          symbol: rule.lhs
+          terminal: false
+          rule: cur_action.rule
+          expansions: {}
+
+        i = rule.rhs.length
+        while (i -= 1) >= 0
+          state_stack.pop()
+          rhs_symbol = rule.rhs[i]
+          output_stack_top = output_stack[output_stack.length - 1]
+          if output_stack_top.symbol != rhs_symbol
+            ###
+            console.dir {
+              cur_input: cur_input
+              cur_state: cur_state
+              cur_action: cur_action
+              input_stack: input_stack
+              output_stack: output_stack
+              state_stack: state_stack
+            }
+            ###
+            throw "StackError: Expecting #{rhs_symbol}, Got #{output_stack_top.symbol}"
+
+          parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
+          output_stack.pop()
+
+        input_stack.push parse_node
+      else
+        console.dir {
+          cur_input: cur_input
+          cur_state: cur_state
+          cur_action: cur_action
+          input_stack: input_stack
+          output_stack: output_stack
+          state_stack: state_stack
+        }
+        throw "ParseError"
+    
+    rule = @production_rules[0]
+
+    start_parse_node =
+      symbol: rule.lhs
+      terminal: false
+      rule: 0
+      expansions: {}
+
+    i = rule.rhs.length
+    while (i -= 1) >= 0
+      state_stack.pop()
+      rhs_symbol = rule.rhs[i]
+      start_parse_node.expansions[rhs_symbol] = output_stack[output_stack.length - 1]
+      output_stack.pop()
+
+    #this.logParseTree start_parse_node
+    console.groupEnd()
+    return start_parse_node
         

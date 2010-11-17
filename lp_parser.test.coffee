@@ -1,4 +1,4 @@
-module 'LPTokenizer'
+module 'LPParser'
 
 assertThrows = (error,fcn) ->
   correctError = false
@@ -12,9 +12,20 @@ test 'valid', ->
   parser = new LPParser
   tokenizer = new LPTokenizer
 
-  same(
-    parser.getDerivation(
-      tokenizer.tokenize "A"
-    ),
-    ["ASDF"]
-  )
+  trials = [
+    "A^(BvC)",
+    "A->B",
+    "A<->B",
+    "A^B^C",
+    "AvB",
+    "AvBvC",
+    "Av(B^C)vD",
+    "A^B",
+    "A",
+    "((((A))))",
+    "~A",
+    "~~~~~~~~~A"
+  ]
+
+  for trial in trials
+    ok(parser.parse(tokenizer.tokenize(trial)),trial)

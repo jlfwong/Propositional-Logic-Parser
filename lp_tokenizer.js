@@ -38,7 +38,7 @@
       add_transitions("start", "^", "^");
       add_transitions("start", "v", "v");
       add_transitions("start", "(", "(");
-      add_transitions("start", ")", "v");
+      add_transitions("start", ")", ")");
       add_transitions("start", "<", "<");
       add_transitions("<", "-", "<-");
       add_transitions("<-", ">", "<->");

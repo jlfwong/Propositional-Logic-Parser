@@ -34,6 +34,11 @@ test 'valid', ->
     {type: '~',     lexeme: '~'},
     {type: 'atom',  lexeme: 'A'}
   ]
+  same (tokenizer.tokenize '(A)'), [
+    {type: '(',     lexeme: '('},
+    {type: 'atom',  lexeme: 'A'},
+    {type: ')',     lexeme: ')'},
+  ]
 
 test 'errors', ->
   tokenizer = new LPTokenizer
