@@ -83,6 +83,7 @@
             "D": shift(2),
             "N": shift(5),
             "G": shift(20),
+            "(": shift(7),
             "atom": shift(8),
             "~": shift(6)
           }, {

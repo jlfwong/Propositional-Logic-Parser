@@ -84,7 +84,7 @@ window.LPParser = class LPParser
       rhs: ["G"]
     }
 
-    # 11: G => ( S ) 
+    # 11: G => ( E ) 
     # 12: G => atom
     {
       lhs: "G",
@@ -185,6 +185,7 @@ window.LPParser = class LPParser
         "D":    shift 2
         "N":    shift 5
         "G":    shift 20
+        "(":    shift 7
         "atom": shift 8
         "~":    shift 6
       },

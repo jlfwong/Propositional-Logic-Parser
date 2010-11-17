@@ -14,7 +14,7 @@
   test('valid', function() {
     var parser, trial, trials, _i, _len, _results;
     parser = new LPParser;
-    trials = ["A^(BvC)", "A->B", "A<->B", "A^B^C", "AvB", "AvBvC", "Av(B^C)vD", "A^B", "A", "((((A))))", "~A", "~~~~~~~~~A", "~A<->~B->~C^~Dv~E"];
+    trials = ["A^(BvC)", "A->B", "A<->B", "A^B^C", "AvB", "AvBvC", "Av(B^C)vD", "A^B", "A", "((((A))))", "~A", "~~~~~~~~~A", "~A<->~B->~C^~Dv~E", "(~A^B)<->(A->B)"];
     _results = [];
     for (_i = 0, _len = trials.length; _i < _len; _i++) {
       trial = trials[_i];

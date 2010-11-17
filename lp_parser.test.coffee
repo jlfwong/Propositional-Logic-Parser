@@ -24,7 +24,8 @@ test 'valid', ->
     "((((A))))",
     "~A",
     "~~~~~~~~~A",
-    "~A<->~B->~C^~Dv~E"
+    "~A<->~B->~C^~Dv~E",
+    "(~A^B)<->(A->B)"
   ]
 
   for trial in trials
