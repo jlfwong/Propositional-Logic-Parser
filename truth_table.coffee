@@ -18,7 +18,7 @@ $(document).ready ->
         for symbol,node of cur_node.expansions
           node_stack.push node
 
-    return atoms
+    return atoms.sort()
 
   getAllValuations = (atom_list) ->
     valuations = []

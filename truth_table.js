@@ -29,7 +29,7 @@
           }
         }
       }
-      return atoms;
+      return atoms.sort();
     };
     getAllValuations = function(atom_list) {
       var cur_named_val, cur_valuation, i, named_valuations, partial_val_stack, val, valuations, _i, _len;
