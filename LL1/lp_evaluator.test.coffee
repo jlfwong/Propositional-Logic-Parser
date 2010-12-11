@@ -44,7 +44,7 @@ test 'double negation', ->
 
 test 'simple tautology', ->
   assertValuations {
-    formula: 'Av~A'
+    formula: '{Av~A}'
     trials: [
       [{'A':false},true],
       [{'A':true}, true]
@@ -53,7 +53,7 @@ test 'simple tautology', ->
 
 test 'simple contradiction', ->
   assertValuations {
-    formula: 'A^~A'
+    formula: '<A^~A>'
     trials: [
       [{'A':false},false],
       [{'A':true}, false]
@@ -62,7 +62,7 @@ test 'simple contradiction', ->
 
 test 'and', ->
   assertValuations {
-    formula: 'A^B'
+    formula: '<A^B>'
     trials: [
       [{'A':false, 'B':false},false],
       [{'A':false, 'B':true },false],
@@ -73,7 +73,7 @@ test 'and', ->
 
 test 'or', ->
   assertValuations {
-    formula: 'AvB'
+    formula: '{AvB}'
     trials: [
       [{'A':false, 'B':false},false],
       [{'A':false, 'B':true },true ],
@@ -84,7 +84,7 @@ test 'or', ->
 
 test 'implication', ->
   assertValuations {
-    formula: 'A->B'
+    formula: '[A->B]'
     trials: [
       [{'A':false, 'B':false},true ],
       [{'A':false, 'B':true },true ],
@@ -95,7 +95,7 @@ test 'implication', ->
 
 test 'equivalence', ->
   assertValuations {
-    formula: 'A<->B'
+    formula: '(A<->B)'
     trials: [
       [{'A':false, 'B':false},true ],
       [{'A':false, 'B':true },false],
@@ -106,7 +106,7 @@ test 'equivalence', ->
 
 test 'order of operations', ->
   assertValuations {
-    formula: 'A^~AvA'
+    formula: '<A^/{~AvA}\\>'
     trials: [
       [{'A':false},false],
       [{'A':true },true ]
@@ -114,7 +114,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: 'Av~A^A'
+    formula: '{Av/<~A^A>\\}'
     trials: [
       [{'A':false},false],
       [{'A':true },true ]
@@ -122,7 +122,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: '(Av~A)^A'
+    formula: '</{Av~A}\\^A>'
     trials: [
       [{'A':false},false],
       [{'A':true },true ]
@@ -130,7 +130,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: 'Av~(A^A)'
+    formula: '{Av~/<A^A>\\}'
     trials: [
       [{'A':false},true ],
       [{'A':true },true ]
@@ -138,7 +138,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: '~A^(~AvA)'
+    formula: '<~A^/{~AvA}\\>'
     trials: [
       [{'A':false},true ],
       [{'A':true },false]
@@ -146,7 +146,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: '(((A)))'
+    formula: '///A\\\\\\'
     trials: [
       [{'A':false},false],
       [{'A':true },true ]
@@ -154,7 +154,7 @@ test 'order of operations', ->
   }
 
   assertValuations {
-    formula: '~AvB'
+    formula: '{~AvB}'
     trials: [
       [{'A':false, 'B':false},true ],
       [{'A':false, 'B':true },true ],

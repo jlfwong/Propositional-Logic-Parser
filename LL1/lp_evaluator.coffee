@@ -9,8 +9,8 @@ window.LPEvaluator = class LPEvaluator
     else if parse_node.rule.rhs[0] == "~"
       return !this.getValue(parse_node.expansions["N"],assignments)
 
-    else if parse_node.rule.rhs.length == 3
-      switch (parse_node.rule.rhs[1])
+    else if parse_node.rule.rhs.length == 5
+      switch (parse_node.rule.rhs[2])
         when "^"
           return  this.getValue(parse_node.expansions["N"],assignments) and
                   this.getValue(parse_node.expansions["D"],assignments)

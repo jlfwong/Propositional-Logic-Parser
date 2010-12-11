@@ -98,6 +98,9 @@
         }
         parse_stack.pop();
       }
+      if (parse_stack.length > 0) {
+        throw "ParseError";
+      }
       console.log("Finished", input_string, derivation);
       return true;
     };

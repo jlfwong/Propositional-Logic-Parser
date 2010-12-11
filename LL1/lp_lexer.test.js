@@ -107,16 +107,16 @@
         lexeme: '>'
       }
     ]);
-    return same(lexer.tokenize('"A"'), [
+    return same(lexer.tokenize('/A\\'), [
       {
-        type: '"',
-        lexeme: '"'
+        type: '/',
+        lexeme: '/'
       }, {
         type: 'atom',
         lexeme: 'A'
       }, {
-        type: '"',
-        lexeme: '"'
+        type: '\\',
+        lexeme: '\\'
       }
     ]);
   });

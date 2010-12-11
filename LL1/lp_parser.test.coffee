@@ -35,7 +35,6 @@ test 'errors', ->
   parser = new LPParser
 
   trials = [
-    "",
     "^",
     "v",
     "(",

@@ -93,7 +93,29 @@ window.LPParser = class LPParser
           parse_stack.push reverse.pop()
       if parse_stack[parse_stack.length - 1] != a.type
         throw "ParseError"
+
+      derviation.push {
+        lhs: a.type,
+        rhs: a.lexeme
+      }
       parse_stack.pop()
 
+    if parse_stack.length > 0
+      throw "ParseError"
+
+    getParseTree = () ->
+      curnode = {
+        rule: derivation.shift(),
+        expansions: {}
+      }
+
+      if curnode.rule.lhs in @nonterminals
+        curnode.terminal = false
+        for rhs_symbol in curnode.rule.rhs
+          curnode.expansions[rhs_symbol] = getParseTree()
+      else
+        curnode.terminal = true
+        curnode.literal = curnode.rule.rhs
+
     console.log "Finished", input_string, derivation
-    true
+    getParseTree()

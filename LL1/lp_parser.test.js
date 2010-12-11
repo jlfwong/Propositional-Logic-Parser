@@ -25,7 +25,7 @@
   test('errors', function() {
     var parser, trials, _fn, _i, _len, _results;
     parser = new LPParser;
-    trials = ["", "^", "v", "(", "(((", "((())", ")", ")(", "~", "AA", "->", "<->", "A->->B", "A<-><->B"];
+    trials = ["^", "v", "(", "(((", "((())", ")", ")(", "~", "AA", "->", "<->", "A->->B", "A<-><->B"];
     _fn = function(trial) {
       return assertThrows("ParseError", function() {
         return parser.parse(trial);
