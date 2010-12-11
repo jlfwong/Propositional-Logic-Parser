@@ -49,10 +49,10 @@ test 'valid', ->
     {type: 'atom',  lexeme: 'A'},
     {type: '>',     lexeme: '>'},
   ]
-  same (lexer.tokenize '"A"'), [
-    {type: '"',     lexeme: '"'},
+  same (lexer.tokenize '/A\\'), [
+    {type: '/',     lexeme: '/'},
     {type: 'atom',  lexeme: 'A'},
-    {type: '"',     lexeme: '"'},
+    {type: '\\',     lexeme: '\\'},
   ]
 
 test 'errors', ->

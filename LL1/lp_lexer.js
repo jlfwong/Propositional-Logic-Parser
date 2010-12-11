@@ -14,8 +14,8 @@
       }
       return LPLexer;
     })();
-    LPLexer.prototype.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")", "{", "}", "[", "]", "<", ">", "\""];
-    LPLexer.prototype.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")", "[", "]", "{", "}", "<", ">", "\""];
+    LPLexer.prototype.states = ["start", "atom", "<", "<-", "<->", "-", "->", "~", "^", "v", "(", ")", "{", "}", "[", "]", "<", ">", "/", "\\"];
+    LPLexer.prototype.accepting_states = ["atom", "<->", "->", "~", "^", "v", "(", ")", "[", "]", "{", "}", "<", ">", "/", "\\"];
     LPLexer.prototype.init_transitions = function() {
       var add_transitions, s, transitions, _i, _len, _ref;
       transitions = {};
@@ -40,7 +40,8 @@
       add_transitions("start", "(", "(");
       add_transitions("start", ")", ")");
       add_transitions("start", ">", ">");
-      add_transitions("start", "\"", "\"");
+      add_transitions("start", "/", "/");
+      add_transitions("start", "\\", "\\");
       add_transitions("start", "]", "]");
       add_transitions("start", "[", "[");
       add_transitions("start", "{", "{");
@@ -64,6 +65,7 @@
           curtok += c;
         } else if (this.transitions["start"][c] != null) {
           if (__indexOf.call(this.accepting_states, curstate) < 0) {
+            console.log("NotAccept", curstate);
             throw "LexingError";
           }
           tokenQueue.push({
@@ -73,10 +75,12 @@
           curstate = this.transitions["start"][c];
           curtok = c;
         } else {
+          console.log("ErrorOn", curstate, c);
           throw "LexingError";
         }
       }
       if (__indexOf.call(this.accepting_states, curstate) < 0) {
+        console.log("NotAccepting", curstate);
         throw "LexingError";
       } else {
         tokenQueue.push({
