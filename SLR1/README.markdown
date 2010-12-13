@@ -11,7 +11,7 @@ This post will concern parsing using LR and SLR.
 The Grammar
 ===========
 
-I got the Context Free Grammar (CFG) for Form(Lp) from here: [http://www.oursland.net/aima/propositionApplet.html]()
+I got the Context Free Grammar (CFG) for Form(Lp) from here: [http://www.oursland.net/aima/propositionApplet.html](http://www.oursland.net/aima/propositionApplet.html)
 
 It looks like this:
 
