@@ -627,3 +627,8 @@ Note that the X refers to a state #, where Y refers to a rule # (s2 and r2 do *n
 
 **NOTE:** There is no rule to reduce by `S: BOF E EOF` in this table. 
 This is because no token can follow S (EOF is always the last token).
+
+In Action
+=========
+
+You can see this parser in action here: [http://jamie-wong.com/experiments/truthtabler/SLR1/]()
