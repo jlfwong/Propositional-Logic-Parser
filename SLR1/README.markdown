@@ -40,7 +40,7 @@ The Handle DFA
 Using the grammar as a simple starting point, the most intuitive construction
 of the handle DFA looks like this:
 
-![Intuitive Handle DFA](simple_handle_dfa.png)
+![Intuitive Handle DFA](http://phleet.github.com/images/parsing/simple_handle_dfa.png)
 
 Here, double circled states indicate states where a reduction can occur and what rule to reduce by. 
 
@@ -63,7 +63,7 @@ transitions to 19 on `G`, 23 on `atom` and 20 on `(`.
 
 Unfortunately, this means adding a *lot* of edges. The resulting DFA looks like so:
 
-![More Edges DFA](added_edges_dfa.png)
+![More Edges DFA](http://phleet.github.com/images/parsing/added_edges_dfa.png)
 
 
 Shift Reduce Conflicts
@@ -75,7 +75,7 @@ In the below portion of the DFA, if your current read input is `BOF N` and you
 receive the input token `^`, how do you know to shift instead of reducing by
 `D: N`?
 
-![N Hat](nhat.png)
+![N Hat](http://phleet.github.com/images/parsing/nhat.png)
 
 **Solution to Problem 2:** This is where SLR(1) and Follow(A) come in.
 
