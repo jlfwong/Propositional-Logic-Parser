@@ -120,6 +120,16 @@ under SLR(1). Therefore the grammar is not SLR(1).
 
 Otherwise, if S has a reduce rule with left hand side X: if y is in Follow(X), reduce by the rule, otherwise if y is in I, shift appropriately. If y is neither in Follow(X) nor in I, a parsing error should be thrown.
 
+**Example:** Consider state 14. 
+
+    I = {^} - There is only a shift transition on ^
+    Follow(D) = {v,->,<->,),EOF} - D is the LHS of the rule to reduce at state 14
+
+    If in State 14 with next input token y
+        If y is ^, shift to 15
+        If y is in {v,->,<->,),EOF}, reduce by D: N
+        Otherwise, throw a parsing error
+
 The SLR(1) Parse Table
 ======================
 By using the DFA and Follow described above, we can construct the table below.
