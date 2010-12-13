@@ -1,0 +1,18 @@
+digraph dfa {
+  graph [fontsize=12]
+  node [fontsize=12]
+  edge [fontsize=12]
+  0 [shape=none, label=""]
+  1 [shape=circle]
+  2 [shape=circle]
+  14 [label="14 / D: N" ,shape=doublecircle]
+  15 [label="15" ,shape=circle]
+  16 [label="16 / D: N ^ D" ,shape=doublecircle]
+
+  0 -> 1
+  1 -> 2 [label="BOF"]
+
+  2 -> 14 [label="N"]
+  14 -> 15 [label="^"]
+  15 -> 16 [label="D"]
+} 

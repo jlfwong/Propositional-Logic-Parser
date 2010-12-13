@@ -65,7 +65,6 @@
           curtok += c;
         } else if (this.transitions["start"][c] != null) {
           if (__indexOf.call(this.accepting_states, curstate) < 0) {
-            console.log("NotAccept", curstate);
             throw "LexingError";
           }
           tokenQueue.push({
@@ -75,12 +74,10 @@
           curstate = this.transitions["start"][c];
           curtok = c;
         } else {
-          console.log("ErrorOn", curstate, c);
           throw "LexingError";
         }
       }
       if (__indexOf.call(this.accepting_states, curstate) < 0) {
-        console.log("NotAccepting", curstate);
         throw "LexingError";
       } else {
         tokenQueue.push({

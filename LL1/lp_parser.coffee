@@ -62,12 +62,12 @@ window.LPParser = class LPParser
 
     input_queue.unshift {
       type: "BOF",
-      literal: "BOF"
+      lexeme: "BOF"
     }
 
     input_queue.push {
       type: "EOF",
-      literal: "EOF"
+      lexeme: "EOF"
     }
 
     parse_stack = ["S"]
@@ -83,6 +83,7 @@ window.LPParser = class LPParser
           throw "ParseError"
 
         derivation.push {
+          terminal: false
           lhs: curA,
           rhs: gamma
         }
@@ -94,7 +95,8 @@ window.LPParser = class LPParser
       if parse_stack[parse_stack.length - 1] != a.type
         throw "ParseError"
 
-      derviation.push {
+      derivation.push {
+        terminal: true
         lhs: a.type,
         rhs: a.lexeme
       }
@@ -109,13 +111,14 @@ window.LPParser = class LPParser
         expansions: {}
       }
 
-      if curnode.rule.lhs in @nonterminals
+      if curnode.rule.terminal
+        curnode.terminal = true
+        curnode.literal = curnode.rule.rhs
+      else
         curnode.terminal = false
         for rhs_symbol in curnode.rule.rhs
           curnode.expansions[rhs_symbol] = getParseTree()
-      else
-        curnode.terminal = true
-        curnode.literal = curnode.rule.rhs
 
-    console.log "Finished", input_string, derivation
+      return curnode
+
     getParseTree()

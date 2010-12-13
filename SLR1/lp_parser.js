@@ -18,141 +18,140 @@
         };
         this.lexer = new LPLexer;
         this.action_table = [
-          {
-            "BOF": shift(1)
+          {}, {
+            "BOF": shift(2)
           }, {
-            "D": shift(2),
-            "I": shift(3),
-            "C": shift(4),
-            "N": shift(5),
-            "G": shift(20),
-            "E": shift(21),
-            "~": shift(6),
-            "(": shift(7),
-            "atom": shift(8)
+            "E": shift(3),
+            "I": shift(5),
+            "C": shift(8),
+            "D": shift(11),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
           }, {
-            "v": shift(18),
+            "EOF": shift(4)
+          }, {}, {
+            "EOF": reduce(2),
+            "<->": shift(6),
+            ")": reduce(2)
+          }, {
+            "E": shift(7),
+            "I": shift(5),
+            "C": shift(8),
+            "D": shift(11),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
+          }, {
+            "EOF": reduce(1),
+            ")": reduce(1)
+          }, {
+            "EOF": reduce(4),
+            "<->": reduce(4),
+            "->": shift(9),
+            ")": reduce(4)
+          }, {
+            "I": shift(10),
+            "C": shift(8),
+            "D": shift(11),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
+          }, {
+            "EOF": reduce(3),
+            "<->": reduce(3),
+            ")": reduce(3)
+          }, {
+            "EOF": reduce(6),
             "<->": reduce(6),
             "->": reduce(6),
-            ")": reduce(6),
-            "EOF": reduce(6)
+            "v": shift(12),
+            ")": reduce(6)
           }, {
-            "<->": shift(9),
-            ")": reduce(2),
-            "EOF": reduce(2)
+            "C": shift(13),
+            "D": shift(11),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
           }, {
-            "->": shift(11),
-            "<->": reduce(4),
-            ")": reduce(4),
-            "EOF": reduce(4)
+            "EOF": reduce(5),
+            "<->": reduce(5),
+            "->": reduce(5),
+            ")": reduce(5)
           }, {
-            "^": shift(13),
+            "EOF": reduce(8),
             "<->": reduce(8),
             "->": reduce(8),
             "v": reduce(8),
-            ")": reduce(8),
-            "EOF": reduce(8)
+            "^": shift(15),
+            ")": reduce(8)
           }, {
-            "~": shift(6),
-            "N": shift(15),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8)
+            "D": shift(16),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
           }, {
-            "(": shift(7),
-            "E": shift(16),
-            "I": shift(3),
-            "C": shift(4),
-            "D": shift(2),
-            "N": shift(5),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8),
-            "~": shift(6)
-          }, {
-            "<->": reduce(12),
-            "->": reduce(12),
-            "^": reduce(12),
-            "v": reduce(12),
-            ")": reduce(12),
-            "EOF": reduce(12)
-          }, {
-            "E": shift(10),
-            "I": shift(3),
-            "C": shift(4),
-            "D": shift(2),
-            "N": shift(5),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8),
-            "~": shift(6)
-          }, {
-            ")": reduce(1),
-            "EOF": reduce(1)
-          }, {
-            "I": shift(12),
-            "C": shift(4),
-            "D": shift(2),
-            "N": shift(5),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8),
-            "~": shift(6)
-          }, {
-            "<->": reduce(3),
-            ")": reduce(3),
-            "EOF": reduce(3)
-          }, {
-            "D": shift(14),
-            "N": shift(5),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8),
-            "~": shift(6)
-          }, {
+            "EOF": reduce(7),
             "<->": reduce(7),
             "->": reduce(7),
             "v": reduce(7),
-            ")": reduce(7),
-            "EOF": reduce(7)
+            ")": reduce(7)
           }, {
+            "N": shift(18),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
+          }, {
+            "EOF": reduce(9),
             "<->": reduce(9),
             "->": reduce(9),
-            "^": reduce(9),
             "v": reduce(9),
-            ")": reduce(9),
-            "EOF": reduce(9)
+            "^": reduce(9),
+            ")": reduce(9)
           }, {
-            ")": shift(17)
-          }, {
-            "<->": reduce(11),
-            "->": reduce(11),
-            "^": reduce(11),
-            "v": reduce(11),
-            ")": reduce(11),
-            "EOF": reduce(11)
-          }, {
-            "C": shift(19),
-            "D": shift(2),
-            "N": shift(5),
-            "G": shift(20),
-            "(": shift(7),
-            "atom": shift(8),
-            "~": shift(6)
-          }, {
-            "<->": reduce(5),
-            "->": reduce(5),
-            ")": reduce(5),
-            "EOF": reduce(5)
-          }, {
+            "EOF": reduce(10),
             "<->": reduce(10),
             "->": reduce(10),
-            "^": reduce(10),
             "v": reduce(10),
-            ")": reduce(10),
-            "EOF": reduce(10)
+            "^": reduce(10),
+            ")": reduce(10)
           }, {
-            "EOF": shift(22)
+            "E": shift(21),
+            "I": shift(5),
+            "C": shift(8),
+            "D": shift(11),
+            "N": shift(14),
+            "G": shift(19),
+            "~": shift(17),
+            "(": shift(20),
+            "atom": shift(23)
+          }, {
+            ")": shift(22)
+          }, {
+            "EOF": reduce(11),
+            "<->": reduce(11),
+            "->": reduce(11),
+            "v": reduce(11),
+            "^": reduce(11),
+            ")": reduce(11)
+          }, {
+            "EOF": reduce(12),
+            "<->": reduce(12),
+            "->": reduce(12),
+            "v": reduce(12),
+            "^": reduce(12),
+            ")": reduce(12)
           }
         ];
         return this;
@@ -207,7 +206,7 @@
       var cur_action, cur_input, cur_state, i, input_stack, output_stack, output_stack_top, parse_node, rhs_symbol, rule, start_parse_node, state_stack, token, tokens, _i, _len;
       tokens = this.lexer.tokenize(input_string);
       input_stack = [];
-      state_stack = [0];
+      state_stack = [1];
       output_stack = [];
       input_stack.unshift({
         symbol: "BOF",

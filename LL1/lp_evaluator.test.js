@@ -74,7 +74,7 @@
   });
   test('simple tautology', function() {
     return assertValuations({
-      formula: 'Av~A',
+      formula: '{Av~A}',
       trials: [
         [
           {
@@ -90,7 +90,7 @@
   });
   test('simple contradiction', function() {
     return assertValuations({
-      formula: 'A^~A',
+      formula: '<A^~A>',
       trials: [
         [
           {
@@ -106,7 +106,7 @@
   });
   test('and', function() {
     return assertValuations({
-      formula: 'A^B',
+      formula: '<A^B>',
       trials: [
         [
           {
@@ -134,7 +134,7 @@
   });
   test('or', function() {
     return assertValuations({
-      formula: 'AvB',
+      formula: '{AvB}',
       trials: [
         [
           {
@@ -162,7 +162,7 @@
   });
   test('implication', function() {
     return assertValuations({
-      formula: 'A->B',
+      formula: '[A->B]',
       trials: [
         [
           {
@@ -190,7 +190,7 @@
   });
   test('equivalence', function() {
     return assertValuations({
-      formula: 'A<->B',
+      formula: '(A<->B)',
       trials: [
         [
           {
@@ -218,7 +218,7 @@
   });
   test('order of operations', function() {
     assertValuations({
-      formula: 'A^~AvA',
+      formula: '<A^/{~AvA}\\>',
       trials: [
         [
           {
@@ -232,7 +232,7 @@
       ]
     });
     assertValuations({
-      formula: 'Av~A^A',
+      formula: '{Av/<~A^A>\\}',
       trials: [
         [
           {
@@ -246,7 +246,7 @@
       ]
     });
     assertValuations({
-      formula: '(Av~A)^A',
+      formula: '</{Av~A}\\^A>',
       trials: [
         [
           {
@@ -260,7 +260,7 @@
       ]
     });
     assertValuations({
-      formula: 'Av~(A^A)',
+      formula: '{Av~/<A^A>\\}',
       trials: [
         [
           {
@@ -274,7 +274,7 @@
       ]
     });
     assertValuations({
-      formula: '~A^(~AvA)',
+      formula: '<~A^/{~AvA}\\>',
       trials: [
         [
           {
@@ -288,7 +288,7 @@
       ]
     });
     assertValuations({
-      formula: '(((A)))',
+      formula: '///A\\\\\\',
       trials: [
         [
           {
@@ -302,7 +302,7 @@
       ]
     });
     return assertValuations({
-      formula: '~AvB',
+      formula: '{~AvB}',
       trials: [
         [
           {

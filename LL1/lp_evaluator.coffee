@@ -3,7 +3,10 @@ window.LPEvaluator = class LPEvaluator
     @parser = new LPParser
 
   getValue: (parse_node, assignments) ->
-    if parse_node.terminal
+    if parse_node.rule.rhs[0] == "BOF"
+      return this.getValue(parse_node.expansions["E"],assignments)
+
+    else if parse_node.terminal
       return assignments[parse_node.literal]
 
     else if parse_node.rule.rhs[0] == "~"
@@ -26,14 +29,15 @@ window.LPEvaluator = class LPEvaluator
         when "<->"
           return  this.getValue(parse_node.expansions["I"],assignments) ==
                   this.getValue(parse_node.expansions["E"],assignments)
-        when "E"
-          return  this.getValue(parse_node.expansions["E"],assignments)
 
         else
           throw "EvaluationError"
+    else if parse_node.rule.rhs[0] == "/"
+      return  this.getValue(parse_node.expansions["E"],assignments)
 
     else if parse_node.rule.rhs.length == 1
       return this.getValue(parse_node.expansions[parse_node.rule.rhs[0]],assignments)
+
     else
       throw "EvaluationError"
 

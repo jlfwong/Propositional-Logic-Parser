@@ -15,10 +15,9 @@
       atoms = [];
       node_stack = [parse_root];
       while (node_stack.length > 0) {
-        cur_node = node_stack[node_stack.length - 1];
-        node_stack.pop();
+        cur_node = node_stack.pop();
         if (cur_node.terminal) {
-          if (cur_node.symbol === 'atom' && (_ref = cur_node.literal, __indexOf.call(atoms, _ref) < 0)) {
+          if (cur_node.rule.lhs === 'atom' && (_ref = cur_node.literal, __indexOf.call(atoms, _ref) < 0)) {
             atoms.push(cur_node.literal);
           }
         } else {

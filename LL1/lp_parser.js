@@ -60,15 +60,15 @@
     })();
     LPParser.prototype.nonterminals = ["S", "E", "I", "C", "D", "N", "G"];
     LPParser.prototype.parse = function(input_string) {
-      var a, curA, derivation, gamma, input_queue, parse_stack, reverse, symbol, _i, _j, _len, _len2, _ref;
+      var a, curA, derivation, gamma, getParseTree, input_queue, parse_stack, reverse, symbol, _i, _j, _len, _len2, _ref;
       input_queue = this.lexer.tokenize(input_string);
       input_queue.unshift({
         type: "BOF",
-        literal: "BOF"
+        lexeme: "BOF"
       });
       input_queue.push({
         type: "EOF",
-        literal: "EOF"
+        lexeme: "EOF"
       });
       parse_stack = ["S"];
       derivation = [];
@@ -81,6 +81,7 @@
             throw "ParseError";
           }
           derivation.push({
+            terminal: false,
             lhs: curA,
             rhs: gamma
           });
@@ -96,13 +97,36 @@
         if (parse_stack[parse_stack.length - 1] !== a.type) {
           throw "ParseError";
         }
+        derivation.push({
+          terminal: true,
+          lhs: a.type,
+          rhs: a.lexeme
+        });
         parse_stack.pop();
       }
       if (parse_stack.length > 0) {
         throw "ParseError";
       }
-      console.log("Finished", input_string, derivation);
-      return true;
+      getParseTree = function() {
+        var curnode, rhs_symbol, _i, _len, _ref;
+        curnode = {
+          rule: derivation.shift(),
+          expansions: {}
+        };
+        if (curnode.rule.terminal) {
+          curnode.terminal = true;
+          curnode.literal = curnode.rule.rhs;
+        } else {
+          curnode.terminal = false;
+          _ref = curnode.rule.rhs;
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            rhs_symbol = _ref[_i];
+            curnode.expansions[rhs_symbol] = getParseTree();
+          }
+        }
+        return curnode;
+      };
+      return getParseTree();
     };
     return LPParser;
   })();

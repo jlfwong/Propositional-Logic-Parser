@@ -9,10 +9,9 @@ $(document).ready ->
     node_stack = [parse_root]
 
     while node_stack.length > 0
-      cur_node = node_stack[node_stack.length-1]
-      node_stack.pop()
+      cur_node = node_stack.pop()
       if cur_node.terminal
-        if cur_node.symbol == 'atom' and cur_node.literal not in atoms
+        if cur_node.rule.lhs == 'atom' and cur_node.literal not in atoms
           atoms.push cur_node.literal
       else
         for symbol,node of cur_node.expansions

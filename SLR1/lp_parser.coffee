@@ -111,162 +111,164 @@ window.LPParser = class LPParser
 
     @lexer = new LPLexer
     @action_table = [
-      { # 0
-        "BOF":  shift 1
-      },
+      {},
       { # 1
-        "D":    shift 2
-        "I":    shift 3
-        "C":    shift 4
-        "N":    shift 5
-        "G":    shift 20
-        "E":    shift 21
-        "~":    shift 6
-        "(":    shift 7
-        "atom": shift 8
+        "BOF":  shift  2
       },
       { # 2
-        "v":    shift 18
-        "<->":  reduce 6
-        "->":   reduce 6
-        ")":    reduce 6
-        "EOF":  reduce 6
+        "E":    shift 3
+        "I":    shift 5
+        "C":    shift 8
+        "D":    shift 11
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
       },
       { # 3
-        "<->":  shift 9
-        ")":    reduce 2
-        "EOF":  reduce 2
+        "EOF":  shift 4
       },
       { # 4
-        "->":   shift 11
-        "<->":  reduce 4
-        ")":    reduce 4
-        "EOF":  reduce 4
       },
       { # 5
-        "^":    shift 13
+        "EOF":  reduce 2
+        "<->":  shift 6
+        ")":    reduce 2
+      },
+      { # 6
+        "E":    shift 7
+        "I":    shift 5
+        "C":    shift 8
+        "D":    shift 11
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
+      },
+      { # 7
+        "EOF":  reduce 1
+        ")":    reduce 1
+      },
+      { # 8
+        "EOF":  reduce 4
+        "<->":  reduce 4
+        "->":   shift 9
+        ")":    reduce 4
+      },
+      { # 9
+        "I":    shift 10
+        "C":    shift 8
+        "D":    shift 11
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
+      },
+      { # 10
+        "EOF":  reduce 3
+        "<->":  reduce 3
+        ")":    reduce 3
+      },
+      { # 11
+        "EOF":  reduce 6
+        "<->":  reduce 6
+        "->":   reduce 6
+        "v":    shift 12
+        ")":    reduce 6
+      },
+      { # 12
+        "C":    shift 13
+        "D":    shift 11
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
+      },
+      { # 13
+        "EOF":  reduce 5
+        "<->":  reduce 5
+        "->":   reduce 5
+        ")":    reduce 5
+      },
+      { # 14
+        "EOF":  reduce 8
         "<->":  reduce 8
         "->":   reduce 8
         "v":    reduce 8
+        "^":    shift 15
         ")":    reduce 8
-        "EOF":  reduce 8
       },
-      { # 6
-        "~":    shift 6
-        "N":    shift 15
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
+      { # 15
+        "D":    shift 16
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
       },
-      { # 7
-        "(":    shift 7
-        "E":    shift 16
-        "I":    shift 3
-        "C":    shift 4
-        "D":    shift 2
-        "N":    shift 5
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
-        "~":    shift 6
-      },
-      { # 8
-        "<->":  reduce 12
-        "->":   reduce 12
-        "^":    reduce 12
-        "v":    reduce 12
-        ")":    reduce 12
-        "EOF":  reduce 12
-      },
-      { # 9
-        "E":    shift 10
-        "I":    shift 3
-        "C":    shift 4
-        "D":    shift 2
-        "N":    shift 5
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
-        "~":    shift 6
-      },
-      { # 10
-        ")":    reduce 1
-        "EOF":  reduce 1
-      },
-      { # 11
-        "I":    shift 12
-        "C":    shift 4
-        "D":    shift 2
-        "N":    shift 5
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
-        "~":    shift 6
-      },
-      { # 12
-        "<->":  reduce 3
-        ")":    reduce 3
-        "EOF":  reduce 3
-      },
-      { # 13
-        "D":    shift 14
-        "N":    shift 5
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
-        "~":    shift 6
-      },
-      { # 14
+      { # 16
+        "EOF":  reduce 7
         "<->":  reduce 7
         "->":   reduce 7
         "v":    reduce 7
         ")":    reduce 7
-        "EOF":  reduce 7
-      },
-      { # 15
-        "<->":  reduce 9
-        "->":   reduce 9
-        "^":    reduce 9
-        "v":    reduce 9
-        ")":    reduce 9
-        "EOF":  reduce 9
-      },
-      { # 16
-        ")":    shift 17
       },
       { # 17
-        "<->":  reduce 11
-        "->":   reduce 11
-        "^":    reduce 11
-        "v":    reduce 11
-        ")":    reduce 11
-        "EOF":  reduce 11
+        "N":    shift 18
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
       },
       { # 18
-        "C":    shift 19
-        "D":    shift 2
-        "N":    shift 5
-        "G":    shift 20
-        "(":    shift 7
-        "atom": shift 8
-        "~":    shift 6
+        "EOF":  reduce 9
+        "<->":  reduce 9
+        "->":   reduce 9
+        "v":    reduce 9
+        "^":    reduce 9
+        ")":    reduce 9
       },
       { # 19
-        "<->":  reduce 5
-        "->":   reduce 5
-        ")":    reduce 5
-        "EOF":  reduce 5
-      },
-      { # 20
+        "EOF":  reduce 10
         "<->":  reduce 10
         "->":   reduce 10
-        "^":    reduce 10
         "v":    reduce 10
+        "^":    reduce 10
         ")":    reduce 10
-        "EOF":  reduce 10
+      },
+      { # 20
+        "E":    shift 21
+        "I":    shift 5
+        "C":    shift 8
+        "D":    shift 11
+        "N":    shift 14
+        "G":    shift 19
+        "~":    shift 17
+        "(":    shift 20
+        "atom": shift 23
       },
       { # 21
-        "EOF":  shift 22
+        ")":    shift 22
+      },
+      { # 22
+        "EOF":  reduce 11
+        "<->":  reduce 11
+        "->":   reduce 11
+        "v":    reduce 11
+        "^":    reduce 11
+        ")":    reduce 11
+      },
+      { # 23
+        "EOF":  reduce 12
+        "<->":  reduce 12
+        "->":   reduce 12
+        "v":    reduce 12
+        "^":    reduce 12
+        ")":    reduce 12
       }
     ]
 
@@ -275,7 +277,7 @@ window.LPParser = class LPParser
     tokens = @lexer.tokenize input_string
 
     input_stack = []
-    state_stack = [0]
+    state_stack = [1]
     output_stack = []
 
 

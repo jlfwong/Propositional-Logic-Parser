@@ -96,7 +96,6 @@ window.LPLexer = class LPLexer
         curtok += c
       else if @transitions["start"][c]?
         if curstate not in @accepting_states
-          console.log "NotAccept", curstate
           throw "LexingError"
         tokenQueue.push({
           type:   curstate
@@ -105,10 +104,8 @@ window.LPLexer = class LPLexer
         curstate = @transitions["start"][c]
         curtok = c
       else
-        console.log "ErrorOn", curstate, c
         throw "LexingError"
     if curstate not in @accepting_states
-      console.log "NotAccepting", curstate
       throw "LexingError"
     else
       tokenQueue.push({
